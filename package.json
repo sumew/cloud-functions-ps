@@ -1,0 +1,34 @@
+{
+  "name": "canarybot-ps",
+  "version": "1.0.0",
+  "description": "generates turnilo links for canaries in GCE",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "postinstall": "spago install",
+    "build": "spago build",
+    "build:prod": "spago -x spago.production.dhall build",
+    "test": "spago test",
+    "httpHandler": "functions-framework --target=handleHttp",
+    "cloudEventHandler": "functions-framework --target=handleCloudEvent", 
+    "testHttp": "functions-framework --target=testHttp",
+    "testEvent": "functions-framework --target=testEvent",
+    "format": "purs-tidy format-in-place src backend-es/src backend-es/test/*.purs",
+    "format:check": "purs-tidy check src backend-es/src backend-es/test/*.purs",
+    "clean": "rm -rf output output-es .spago dist *.lock .cache",
+    "wipe": "rm -rf node_modules output output-es .spago dist/*.js *.lock .cache"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/compute": "^4.3.0",
+    "@google-cloud/functions-framework": "^3.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "purescript": "^0.15.15",
+    "purs-backend-es": "^1.4.2",
+    "purs-tidy": "^0.11.0",
+    "spago": "^0.21.0"
+  }
+}
